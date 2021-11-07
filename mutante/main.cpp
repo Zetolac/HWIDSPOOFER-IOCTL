@@ -1,5 +1,7 @@
 /*
  * Mutante
+ * IOCTL UPDATE BY ZETOLAC
+ * https://github.com/Zetolac/HWIDSPOOFER-IOCTL/ed
  * Made by Samuel Tulach
  * https://github.com/SamuelTulach/mutante
  */
