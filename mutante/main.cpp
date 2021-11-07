@@ -23,12 +23,7 @@ extern "C" {
 	
 	NTKERNELAPI PVOID PsGetProcessSectionBaseAddress(PEPROCESS Process);
 }
-/**
- * \brief Driver's main entry point
- * \param object Pointer to driver object (invalid when manual mapping)
- * \param registry Registry path (invalid when manual mapping)
- * \return Status of the driver execution
- */
+
 NTSTATUS unsupported_io(PDEVICE_OBJECT device_obj, PIRP irp) {
 	irp->IoStatus.Status = STATUS_NOT_SUPPORTED;
 	IoCompleteRequest(irp, IO_NO_INCREMENT);
@@ -53,7 +48,7 @@ NTSTATUS ioctl_spoofer(PDEVICE_OBJECT device_obj, PIRP irp) {
 	irp->IoStatus.Information = sizeof(NULL);
 
 	auto stack = IoGetCurrentIrpStackLocation(irp);
-	//auto buffer = (p_info)irp->AssociatedIrp.SystemBuffer;
+	
 
 	size_t size = 0;
 
