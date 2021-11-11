@@ -43,6 +43,11 @@ NTSTATUS close_io(PDEVICE_OBJECT device_obj, PIRP irp) {
 	return irp->IoStatus.Status;
 }
 #define ctl_spoof    CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0366, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
+VOID SpooferxD() {
+				Disks::DisableSmart();
+               Disks::ChangeDiskSerials();
+               Smbios::ChangeSmbiosSerials();
+}
 NTSTATUS ioctl_spoofer(PDEVICE_OBJECT device_obj, PIRP irp) {
 	irp->IoStatus.Status = STATUS_SUCCESS;
 	irp->IoStatus.Information = sizeof(NULL);
@@ -55,9 +60,7 @@ NTSTATUS ioctl_spoofer(PDEVICE_OBJECT device_obj, PIRP irp) {
 	if (stack) {
 		
 			if (stack->Parameters.DeviceIoControl.IoControlCode == ctl_spoof) {
-				Disks::DisableSmart();
-               Disks::ChangeDiskSerials();
-               Smbios::ChangeSmbiosSerials();
+SpooferxD();
 			}
 
 		
